@@ -11,13 +11,29 @@ namespace RestAssuredNetClientTest
         [Test]
         public void CanUseClientTestModel()
         {
-            Contact contact= new ContactBuilder()
+            Contact contact = new ContactBuilder()
                 .WithFirstName("John")
                 .WithLastName("Doe")
                 .WithEmail("john@doe.com")
                 .Build();
 
-            contactClient
+            this.contactClient
+                .CreateContact(contact)
+                .Then()
+                .StatusCode(201);
+        }
+
+        [Test]
+        public void CanUseClientTestModelWithAnonymousObject()
+        {
+            var contact = new
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john@doe.com"
+            };
+
+            this.contactClient
                 .CreateContact(contact)
                 .Then()
                 .StatusCode(201);

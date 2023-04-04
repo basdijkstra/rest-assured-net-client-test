@@ -12,7 +12,7 @@ namespace RestAssuredNetClientTest.Client
         {
         }
 
-        public VerifiableResponse CreateContact(Contact contact)
+        public VerifiableResponse CreateContact(object contact)
         {
             return Given()
                 .Spec(base.RequestSpec())
